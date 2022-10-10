@@ -16,20 +16,29 @@ class AlienInvasion:
 
         self.bg_color = self.settings.bg_color
 
+
     def run_game(self):
         #  Запуск основного цикла игры.
         while True:
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    sys.exit()
+            self._check_events()
+            self._update_screen()
 
-            # При каждом проходе цикла перерисовывается экран.
-            self.screen.fill(self.bg_color)
-            self.ship.blitme()
 
-            # Отображение последнего прорисованного экрана.
-            pygame.display.flip()
 
+
+    def _check_events(self):
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                sys.exit()
+
+    def _update_screen(self):
+        # При каждом проходе цикла перерисовывается экран.
+
+        self.screen.fill(self.bg_color)
+        self.ship.blitme()
+
+        # Отображение последнего прорисованного экрана.
+        pygame.display.flip()
 
 if __name__ == '__main__':
     #  Создание экзамляра и запуск
